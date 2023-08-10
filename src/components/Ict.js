@@ -43,11 +43,11 @@ const Index =()=> {
   };  
 
   const gradientRoRightStyle = {  
-    backgroundImage: 'linear-gradient(to right, white, red)'
+    backgroundImage: 'linear-gradient(to right, white, white, red)'
   }; 
 
   const gradientRoLeftStyle = {  
-    backgroundImage: 'linear-gradient(to left, white, red)'
+    backgroundImage: 'linear-gradient(to left, white, white, red)'
   }; 
 
   const handleStyle = (index) => {
