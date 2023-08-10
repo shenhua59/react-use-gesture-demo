@@ -1,4 +1,4 @@
-# this is a gesture demo based on @use-gesture/react
+# react-use-gesture-demo
 
 In the project directory, you can run:
 
@@ -17,8 +17,4 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Learn More
 
-You can learn more in the [@use-gesture documentation](https://use-gesture.netlify.app/docs/).
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+You can learn more in the [@use-gesture](https://use-gesture.netlify.app/docs/).
