@@ -1,0 +1,77 @@
+.App {
+  display: flex;
+  width: 100vw;
+  height: 300vh;
+  align-items: center;
+  flex-direction: column;
+  overflow: scroll;
+  gap: 3rem;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.Drag {
+  background: lightblue;
+  width: 8rem;
+  height: 8rem;
+  border-radius: 10px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.Drag--2 {
+  background: pink;
+}
+
+.Drag--4 {
+  background: violet;
+}
+
+.Swipe {
+  background: yellowgreen;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 10px;
+  cursor: pointer;
+  touch-action: none;
+}
+
+.DragAndDrop {
+  background: blueviolet;
+  width: 7rem;
+  height: 7rem;
+  border-radius: 10px;
+  cursor: pointer;
+  touch-action: none;
+  position: relative;
+  z-index: 2;
+}
+
+.DragAndDropReceiver {
+  margin: 2rem;
+  background: lightgrey;
+  width: 10rem;
+  height: 10rem;
+  border-radius: 10px;
+  position: relative;
+  z-index: 1;
+}
