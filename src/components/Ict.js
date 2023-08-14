@@ -1,24 +1,35 @@
-import React, { useState, useEffect, useCallback } from 'react';  
+import React, { useState, useEffect, useCallback, useRef } from 'react';  
 import { useDrag } from '@use-gesture/react'
+import RollingWaveformChart from './BrainWaveChart';
+import Rect from './Rect'
+
+
+const initColor = `rgba(99,142,228, 0.14)`;
+const warningColor = `rgb(244, 67, 54)`;
 
 const gridStyle = {  
   display: 'flex',
-  justifyContent: 'center',
+  flexWrap: 'nowrap',
+  gap: '8px',
+  padding: '8px',  
   width: '80%',
   margin:'auto'
 };  
 
 const cellStyle = {  
-  flex: 1,  
-  border: '1px solid #999',  
-  height: '20px',  
-  margin: '0 5px',
+  flex: '1 0 24px',
+  backgroundColor:initColor,
+  height: '24px',  
+  borderRadius:'3px'
 }; 
 
 
 const Index =()=> {  
   const [randomNumber, setRandomNumber] = useState(100); 
-  const [logoPos, setLogoPos] = useState({ x: 0, y: 0 })
+  const [position, setPositon] = useState({ x: 0, y: 0 })
+  const chartWidth = 800;
+  const chartHeight = 400;
+  const dragRef = useRef()
   const data = {
     date: new Date().getTime(),
     ictId: 110
@@ -39,15 +50,15 @@ const Index =()=> {
 
  
   const gradientStyle = {  
-    backgroundImage: `linear-gradient(to Left, red, ${randomNumber > 150 || randomNumber < -10 ? 'red' : 'blue'}`  
+    backgroundImage: `linear-gradient(to Left, ${warningColor}, ${randomNumber > 150 || randomNumber < -10 ? warningColor : initColor}`  
   };  
 
   const gradientRoRightStyle = {  
-    backgroundImage: 'linear-gradient(to right, white, white, red)'
+    backgroundImage: `linear-gradient(to right, ${initColor}, ${warningColor}`
   }; 
 
   const gradientRoLeftStyle = {  
-    backgroundImage: 'linear-gradient(to left, white, white, red)'
+    backgroundImage: `linear-gradient(to left, ${initColor}, ${warningColor}`
   }; 
 
   const handleStyle = (index) => {
@@ -75,13 +86,12 @@ const Index =()=> {
   }, [randomNumber])
 
 
-  const bindLogoPos = useDrag((params) => {
+  const bindposition = useDrag((params) => {
     console.log(params)
-    setLogoPos({
+    setPositon({
       x: params.offset[0],
       y: params.offset[1]
     })
-    
   })
 
   const doSomethingWith = (data) => {
@@ -93,13 +103,18 @@ const Index =()=> {
   return (  
     <div style={{width:'100%'}}>  
       <h1 style={{ textAlign: 'center' }}>{randomNumber}</h1>  
+      <Rect randomNumber={randomNumber } gradientRoLeftStyle={gradientRoLeftStyle} gradientRoRightStyle={gradientRoRightStyle} />
       {renderRact()}
-      <div className="App-header">
-        <div {...bindLogoPos()} style={{ position: 'relative', top: logoPos.y, left: logoPos.x }}>
-          <div style={{width:'200px',height:'100px',backgroundColor:'violet',borderRadius:'10px',marginTop:'30px'}}></div>
+      {/* <div className="App-header">
+        <div ref={dragRef} {...bindposition()} style={{ position: 'relative', top: position.y, left: position.x ,width:'200px',height:'100px',backgroundColor:'violet',marginTop:'30px',borderRadius:'10px'}}>
+          <div style={{width:'100%',height:'100%'}}></div>
         </div>
       </div>
-      <div style={{width:'100%',margin:'15px auto', height:'300px', backgroundColor:'rgb(190 214 191)'}} {...bind(data)} />
+      <div style={{width:'80%',margin:'auto'}}>
+        <div style={{ width: '100%', margin: '15px auto', height: '300px', backgroundColor: 'rgb(190 214 191)' }} {...bind(data)}>
+        <RollingWaveformChart width={chartWidth} height={chartHeight} />
+        </div>
+      </div> */}
     </div>  
   );  
 }  
